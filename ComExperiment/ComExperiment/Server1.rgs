@@ -1,0 +1,23 @@
+HKCR
+{
+	ComExperiment.Server1.1 = s 'Server1 Class'
+	{
+		CLSID = s '{5E9284D3-E31D-4BE5-9774-7616067598A6}'
+	}
+	ComExperiment.Server1 = s 'Server1 Class'
+	{
+		CLSID = s '{5E9284D3-E31D-4BE5-9774-7616067598A6}'
+		CurVer = s 'ComExperiment.Server1.1'
+	}
+	NoRemove CLSID
+	{
+		ForceRemove {5E9284D3-E31D-4BE5-9774-7616067598A6} = s 'Server1 Class'
+		{
+			ProgID = s 'ComExperiment.Server1.1'
+			VersionIndependentProgID = s 'ComExperiment.Server1'
+			ForceRemove 'Programmable'
+			LocalServer32 = s '%MODULE%'
+			'TypeLib' = s '{A6198806-412A-48B2-8F14-A8C1FD5FFAEE}'
+		}
+	}
+}

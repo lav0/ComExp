@@ -1,0 +1,101 @@
+// ComExperiment.idl : IDL source for ComExperiment
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (ComExperiment.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+
+[uuid(D3256DE7-C15A-407f-B88F-CBD226AD71A8)]
+struct Position
+{
+  double X;
+  double Y;
+  double Z;
+};
+
+struct Pos1
+{
+  int X;
+  int Y;
+};
+
+enum Enm {
+  E1 = 0,
+  E2 = 1,
+  E3 = 2
+};
+
+[
+	object,
+	uuid(407FBED6-BA49-4398-AF61-0FAD321813F7),
+	dual,
+	nonextensible,
+	helpstring("IServer1 Interface"),
+	pointer_default(unique)
+]
+interface IServer1 : IDispatch
+{
+
+  [id(1), helpstring("method GetSomething")] 
+  HRESULT GetSomething(
+    [out] struct Position* a_position
+  );
+
+  HRESULT ReturnSomething(
+    [out, retval] struct Position** a_position
+  );
+
+  HRESULT ConverEnum(
+    [in] enum Enm a_value
+  );
+
+  HRESULT SetSomething(
+    [in] struct Position* a_position1,
+    [in] struct Position* a_position2,
+    [in] struct Position* a_position3,
+    [in] struct Position* a_position4
+  );
+
+  HRESULT SetSomething1(
+    [in] struct Position a_position1,
+    [in] struct Position a_position2,
+    [in] struct Position a_position3,
+    [in] struct Position a_position4
+  );
+
+  HRESULT SetSomething2(
+    [in] double a_x1,[in] double a_y1,[in] double a_z1,
+    [in] double a_x2,[in] double a_y2,[in] double a_z2,
+    [in] double a_x3,[in] double a_y3,[in] double a_z3,
+    [in] double a_x4,[in] double a_y4,[in] double a_z4
+  );
+
+  HRESULT GetArray(
+    [out] long* a_p_i_size,
+    [out, retval, size_is(, *a_p_i_size)] struct Pos1** a_p_positions
+  );
+};
+[
+	uuid(A6198806-412A-48B2-8F14-A8C1FD5FFAEE),
+	version(1.0),
+	helpstring("ComExperiment 1.0 Type Library")
+]
+library ComExperimentLib
+{
+  struct Position;
+
+  enum Enm;
+
+	importlib("stdole2.tlb");
+	[
+		uuid(5E9284D3-E31D-4BE5-9774-7616067598A6),
+		helpstring("Server1 Class")
+	]
+	coclass Server1
+	{
+		[default] interface IServer1;
+	};
+};
